@@ -12,7 +12,6 @@ const pool = new Pool({
   password: "1234",
   port: 5432,
 });
-
 var indexRouter = require("./routes/index")(pool);
 var usersRouter = require("./routes/users");
 

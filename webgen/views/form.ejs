@@ -13,6 +13,13 @@
   </head>
   <body>
     <div class="container">
+      <br><br>
+      <%if(data.length > 0){%>
+      <h1>EDIT</h1>
+      <%}%>
+      <%if (data.length == 0){%>
+        <h1>ADD</h1>
+        <%}%>
       <form action="" method="post">
         <fieldset>
           <div class="mb-3">

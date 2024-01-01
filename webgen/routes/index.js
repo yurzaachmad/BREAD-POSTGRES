@@ -46,12 +46,10 @@ module.exports = function (db) {
     if (params.length > 0) {
       sql += ` where ${sqlsearch.join(" and ")}`;
     }
-    console.log(sql);
     db.query(sql, params, (err, countData) => {
       if (err) {
         console.log(err);
       }
-      console.log(countData.rows[0].count);
       const totalPages = Math.ceil(countData.rows[0].count / limit);
 
       let query = "select * from bread";
@@ -70,7 +68,6 @@ module.exports = function (db) {
       params.push(limit, offset);
       query += ` order by ${sortBy} ${sort}`;
       query += ` limit $${params.length - 1} offset $${params.length}`;
-      console.log(query);
       db.query(query, params, (err, data) => {
         if (err) {
           console.log(err);
@@ -119,7 +116,6 @@ module.exports = function (db) {
       if (err) {
         console.log(err);
       }
-      console.log(item);
       res.render("form", { data: item.rows[0], moment });
     });
   });
@@ -150,7 +146,7 @@ module.exports = function (db) {
     const id = req.params.id;
     db.query("delete from bread where id = $1", [id], (err) => {
       if (err) {
-        console.log("hapus data Kontrak gagal");
+        console.log(err);
       }
       res.redirect("/");
     });
